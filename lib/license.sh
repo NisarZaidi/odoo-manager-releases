@@ -4,13 +4,12 @@
 # license.sh
 # RSA license verification. SAFE to ship publicly - contains only the
 # PUBLIC key, which can verify signatures but cannot create new ones.
-#
-# ⚠️ SELLER: replace the placeholder key below with the real contents of
-# your PRIVATE repo's keys/public.pem before pushing this file here.
-#   cat keys/public.pem
 ##############################################################################
 
-read -r -d '' LICENSE_PUBLIC_KEY <<'PUBKEY'
+# Paste the contents of keys/public.pem here (replace the placeholder
+# below) before shipping install.sh to the public releases repo.
+# Run: cat keys/public.pem
+read -r -d '' LICENSE_PUBLIC_KEY <<'PUBKEY' || true
 -----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnFcbP/44/w0Xey+6Yt54
 UDO9HhPlFPwxyxrTKtSWh0DlwJZD9iuys0XIdDxrBw6yWNAeyWTQIZjAZpa5mt1v
@@ -25,6 +24,7 @@ PUBKEY
 b64url_decode()
 {
     local INPUT="$1"
+    # restore standard base64 alphabet + padding
     INPUT="${INPUT//-/+}"
     INPUT="${INPUT//_/\/}"
 
