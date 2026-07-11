@@ -202,7 +202,8 @@ activation*, not the underlying code terms.
 
 Need a license key, lost your key, or hit an issue?
 
-- Email / WhatsApp: *(add your contact details here)*
+- Email: *nisarzaidi75@gmail.com*
+- WhatsApp: *(+92)301-2122387*
 - Please include the name/email you originally purchased under so your
   key can be looked up.
 
