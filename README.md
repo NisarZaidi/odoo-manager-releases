@@ -287,11 +287,11 @@ key are never touched.**
 
 ## License
 
-The tool itself is released under the **MIT License** — see [`LICENSE`](LICENSE).
-Access to the compiled releases in this repo is additionally gated by a
-per-customer license key (see [License Activation](#license-activation));
-this does not change the MIT terms of the source that ships inside the
-release archive.
+This software is **proprietary and commercially licensed** — see
+[`LICENSE`](LICENSE). It is **not open source**. Use is permitted only
+with a valid, purchased license key (see [License Activation](#license-activation)),
+and redistribution, modification, or reverse engineering is not permitted
+without prior written permission from the author.
 
 ---
 
