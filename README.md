@@ -1,10 +1,10 @@
 # 🚀 Odoo Development Manager
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-3.0-blue?style=for-the-badge" alt="Version" />
+  <img src="https://img.shields.io/badge/version-2.0-blue?style=for-the-badge" alt="Version" />
   <img src="https://img.shields.io/badge/platform-Linux%20(Debian%2FUbuntu)-lightgrey?style=for-the-badge&logo=linux" alt="Platform" />
   <img src="https://img.shields.io/badge/shell-Bash-4EAA25?style=for-the-badge&logo=gnu-bash" alt="Bash" />
-  <img src="https://img.shields.io/badge/license-Commercial-orange?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/badge/license-Commercial%20(key%20required)-orange?style=for-the-badge" alt="License" />
 </p>
 
 <p align="center">
@@ -43,6 +43,7 @@ The tool detects what's missing and can install it for you.
 - [Environment Variables](#environment-variables)
 - [Updating](#updating)
 - [Uninstalling](#uninstalling)
+- [License](#license)
 - [Troubleshooting / FAQ](#troubleshooting--faq)
 - [Support](#support)
 
@@ -97,7 +98,8 @@ by email or WhatsApp — no account, no file, nothing else needed.
 
 - The very first time you run the installer (or `odoo-manager` itself), you
   will be prompted to paste that key.
-- The key is verified **entirely offline** — no internet/license server
+- The key is verified **entirely offline** (RSA-signed, checked against a
+  public key baked into the installer) — no internet/license server
   required — and cached at `~/.odoo-manager-license` so you're never asked
   again on that machine.
 - Lost your key or need a new one? Contact the seller (see
@@ -128,6 +130,7 @@ That's it — the interactive wizard takes over from here:
 
 | Category | What it does |
 |---|---|
+| **Core** | Interactive CLI, multi-workspace support, Odoo 13 → Odoo 19 |
 | **Setup** | Guided workspace wizard — clones Odoo, creates a venv, generates `odoo.conf`, all automatically |
 | **Multi-Version** | Run Odoo 13 through 19 side by side, each on its own HTTP/longpolling port |
 | **Projects** | Project Generator (folder + optional git init + optional first module), per-project module list, Git status/branch/dirty-count badges |
@@ -140,10 +143,12 @@ That's it — the interactive wizard takes over from here:
 | **Tool Installer** | Missing VS Code / Cursor / PyCharm? Install them from the tool itself, no browser needed |
 | **System Requirements** | Missing Git / Python 3 / pip / PostgreSQL / openssl / build tools? Install them from the tool itself |
 | **Diagnostics** | Workspace Doctor — health check + auto-repair for broken/missing folders and config |
+| **Enterprise** | Auto-detects real Enterprise modules dropped into `enterprise/` |
 | **Logs** | Live log viewer, automatic log rotation (configurable size/backup count) |
 | **Automation** | Full non-interactive CLI mode for scripts, cron jobs, and CI |
 | **Distribution** | One-line installer, global `odoo-manager` command, Bash + Zsh tab-completion |
 | **Updates** | Checks for a newer version on every launch (silent, non-blocking, skippable) |
+| **Licensing** | RSA-signed lifetime license keys, verified fully offline |
 
 ---
 
@@ -152,7 +157,7 @@ That's it — the interactive wizard takes over from here:
 ```
 ╔════════════════════════════════════════════════════════════════════╗
 ║                      ODOO DEVELOPMENT MANAGER                      ║
-║                            Version 3.0                             ║
+║                            Version 2.0                             ║
 ╚════════════════════════════════════════════════════════════════════╝
   Workspace   /home/you/Documents
   Found       2 workspace(s)
@@ -280,6 +285,16 @@ key are never touched.**
 
 ---
 
+## License
+
+The tool itself is released under the **MIT License** — see [`LICENSE`](LICENSE).
+Access to the compiled releases in this repo is additionally gated by a
+per-customer license key (see [License Activation](#license-activation));
+this does not change the MIT terms of the source that ships inside the
+release archive.
+
+---
+
 ## Troubleshooting / FAQ
 
 **"Invalid license key" during install**
@@ -305,14 +320,24 @@ structural issues (missing folders, missing `odoo.conf`).
 
 ## Support
 
-For license issues, reinstalling on a new machine, or general questions,
-contact the seller directly with the email/contact you used at purchase.
-Please include your license key (or the name/email used to buy it) so it
-can be looked up quickly.
+Need help, lost your license key, or want to report a bug? Reach out
+directly — please include your license key (or the name/email used at
+purchase) so it can be looked up quickly.
 
-For bugs or feature requests, please open a
-[GitHub Issue](https://github.com/NisarZaidi/odoo-manager-releases/issues)
-in this repository.
+| Channel | Contact |
+|---|---|
+| 📧 Email | **nisarzaidi75@gmail.com** |
+| 💬 WhatsApp / Phone | **+92-301-2122387** |
+| 🐛 Bugs / Feature Requests | [Open a GitHub Issue](https://github.com/NisarZaidi/odoo-manager-releases/issues) |
+
+For license issues or reinstalling on a new machine, contact the seller
+directly with the email/contact you used at purchase.
+
+---
+
+## Author
+
+**Nisar Zaidi** — [GitHub](https://github.com/NisarZaidi)
 
 ---
 
