@@ -56,6 +56,38 @@ DOT="●"
 
 command_exists() { command -v "$1" >/dev/null 2>&1; }
 
+hash_file_sha256()
+{
+    local FILE="$1"
+
+    if command_exists sha256sum; then
+        sha256sum "$FILE" | awk '{print $1}'
+    elif command_exists shasum; then
+        shasum -a 256 "$FILE" | awk '{print $1}'
+    else
+        return 1
+    fi
+}
+
+verify_download_checksum()
+{
+    local FILE="$1"
+    local CHECKSUM_FILE="$2"
+
+    [ -f "$FILE" ] || return 1
+    [ -f "$CHECKSUM_FILE" ] || return 1
+
+    local EXPECTED
+    EXPECTED=$(awk '{print $1}' "$CHECKSUM_FILE" | head -n1 | tr -d '[:space:]')
+
+    [ -n "$EXPECTED" ] || return 1
+
+    local ACTUAL
+    ACTUAL=$(hash_file_sha256 "$FILE") || return 2
+
+    [ "$EXPECTED" = "$ACTUAL" ]
+}
+
 ##############################################################################
 # UI Primitives
 ##############################################################################
@@ -186,6 +218,7 @@ TMP_DIR=$(mktemp -d)
 trap 'rm -rf "$TMP_DIR"' EXIT
 
 RELEASE_URL="https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest/download/odoo-manager.tar.gz"
+RELEASE_SHA256_URL="${RELEASE_URL}.sha256"
 
 info "Fetching latest release..."
 
@@ -198,6 +231,29 @@ if ! curl -fsSL "$RELEASE_URL" -o "$TMP_DIR/odoo-manager.tar.gz"; then
 fi
 
 ok "Release downloaded"
+
+if curl -fsSL "$RELEASE_SHA256_URL" -o "$TMP_DIR/odoo-manager.tar.gz.sha256"; then
+
+    if verify_download_checksum "$TMP_DIR/odoo-manager.tar.gz" "$TMP_DIR/odoo-manager.tar.gz.sha256"; then
+        ok "Checksum verified"
+    else
+        CHECKSUM_STATUS=$?
+
+        if [ "$CHECKSUM_STATUS" -eq 2 ]; then
+            warn "Checksum file was found, but no SHA-256 tool is installed to verify it."
+        else
+            die "Checksum verification failed for the downloaded release.
+
+  Expected checksum file:
+  ${RELEASE_SHA256_URL}
+
+  The download may be corrupted or tampered with. Please try again."
+        fi
+    fi
+
+else
+    warn "No checksum file published for the latest release - skipping checksum verification."
+fi
 
 mkdir -p "$TMP_DIR/extracted"
 tar -xzf "$TMP_DIR/odoo-manager.tar.gz" -C "$TMP_DIR/extracted"

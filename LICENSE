@@ -1,43 +1,179 @@
-Copyright (c) 2026 Nisar Zaidi. All Rights Reserved.
+ODOO DEVELOPMENT MANAGER — END USER LICENSE AGREEMENT
 
-This software ("Odoo Development Manager") and its associated documentation
-files are proprietary and confidential. No license, right, or interest in
-the Software is granted except as expressly stated below.
+Copyright (c) 2024-2026 Nisar Zaidi. All Rights Reserved.
 
-1. GRANT OF LICENSE
-   Subject to the purchase and activation of a valid license key issued by
-   the copyright holder, the purchaser is granted a non-exclusive,
-   non-transferable, revocable license to install and use the compiled
-   release of this Software for their own development purposes.
+This End User License Agreement ("Agreement") is a legal agreement between
+you ("User", "Licensee") and Nisar Zaidi ("Author", "Licensor") for the
+software product identified as "Odoo Development Manager" ("Software"),
+including any associated documentation, updates, and release packages.
 
-2. RESTRICTIONS
-   Except as expressly permitted above, no part of this Software may be:
-     - copied, modified, merged, or created into derivative works,
-     - distributed, published, sublicensed, resold, or otherwise made
-       available to any third party,
-     - reverse engineered, decompiled, or disassembled,
-     - used to circumvent, remove, or disable the license-key
-       verification mechanism,
-   without prior written permission from the copyright holder.
+By installing, copying, or otherwise using this Software, you agree to be
+bound by the terms of this Agreement. If you do not agree, do not install
+or use the Software.
 
-3. LICENSE KEYS
-   Each license key is issued to a single purchaser and is not
-   transferable. The copyright holder reserves the right to revoke or
-   refuse to support a license key that is shared, resold, or used in
-   violation of this license.
 
-4. NO WARRANTY
+1. DEFINITIONS
+
+   "Software" means the Odoo Development Manager CLI tool, its installer,
+   all associated shell libraries, completion scripts, and any updates or
+   new versions provided by the Licensor.
+
+   "License Key" means the RSA-signed activation string issued by the
+   Licensor to a specific purchaser, required to install and run the
+   Software.
+
+   "Machine" means a single physical or virtual computer on which the
+   Software is installed and activated.
+
+
+2. GRANT OF LICENSE
+
+   Subject to the purchase and activation of a valid License Key, the
+   Licensor grants the Licensee a non-exclusive, non-transferable,
+   revocable license to:
+
+   (a) Install and use one (1) copy of the Software on one (1) Machine
+       for the Licensee's own Odoo development purposes.
+
+   (b) Receive updates and newer versions of the Software as they are
+       published by the Licensor, for the lifetime of the License Key.
+
+   The License Key is verified entirely offline using RSA cryptographic
+   signature verification. No data is transmitted to any server during
+   license validation.
+
+
+3. RESTRICTIONS
+
+   Except as expressly permitted in Section 2, the Licensee shall NOT:
+
+   (a) Copy, modify, merge, publish, translate, or create derivative works
+       based on the Software.
+
+   (b) Distribute, publish, sublicense, resell, rent, lease, or otherwise
+       transfer the Software or the License Key to any third party.
+
+   (c) Reverse engineer, decompile, disassemble, or otherwise attempt to
+       derive the source code of the Software.
+
+   (d) Remove, disable, circumvent, or bypass the license-key verification
+       mechanism or any copyright/proprietary notices contained in the
+       Software.
+
+   (e) Use the Software to provide commercial hosting, time-sharing, or
+       service-bureau services to third parties.
+
+   (f) Use the same License Key on more than one (1) Machine simultaneously.
+
+
+4. LICENSE KEYS
+
+   (a) Each License Key is issued to a single purchaser and is tied to
+       that purchaser's identity (name and contact information).
+
+   (b) License Keys are lifetime — there is no expiry date or subscription
+       renewal required.
+
+   (c) The Licensor reserves the right to revoke or refuse to support a
+       License Key that is shared, resold, publicly distributed, or used
+       in violation of this Agreement.
+
+   (d) If a License Key is compromised or publicly leaked, the Licensor
+       may, at their discretion, issue a replacement key and invalidate
+       the compromised key.
+
+
+5. INTELLECTUAL PROPERTY
+
+   The Software is protected by copyright laws and international copyright
+   treaties. The Licensor retains all intellectual property rights in the
+   Software, including but not limited to:
+
+   (a) The Software's source code, design, architecture, and algorithms.
+   (b) The RSA key pair used for license signing and verification.
+   (c) All trademarks, logos, and branding associated with the Software.
+
+   No ownership or intellectual property rights are transferred to the
+   Licensee under this Agreement — only the limited right to use the
+   Software as described in Section 2.
+
+
+6. NO WARRANTY
+
    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR OR COPYRIGHT HOLDER BE
-   LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION
-   OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION
-   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND
+   NON-INFRINGEMENT.
 
-5. TERMINATION
-   This license is automatically terminated if the purchaser breaches any
-   of the above restrictions. Upon termination, the purchaser must cease
-   all use of the Software and delete all copies in their possession.
+   THE LICENSOR DOES NOT WARRANT THAT:
+   (a) THE SOFTWARE WILL MEET YOUR REQUIREMENTS OR OPERATE WITHOUT ERROR.
+   (b) THE SOFTWARE IS COMPATIBLE WITH ALL SYSTEMS OR CONFIGURATIONS.
+   (c) THE RESULTS OBTAINED FROM USING THE SOFTWARE WILL BE ACCURATE.
 
-For licensing inquiries, contact: nisarzaidi75@gmail.com / +92-301-2122387
+   THE ENTIRE RISK ARISING FROM THE USE OR PERFORMANCE OF THE SOFTWARE
+   REMAINS WITH THE LICENSEE.
+
+
+7. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
+   SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED
+   TO LOSS OF PROFITS, DATA, BUSINESS, OR GOODWILL, ARISING OUT OF OR IN
+   CONNECTION WITH THIS AGREEMENT OR THE USE OR INABILITY TO USE THE
+   SOFTWARE, EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF
+   SUCH DAMAGES.
+
+   THE LICENSOR'S TOTAL CUMULATIVE LIABILITY UNDER THIS AGREEMENT SHALL
+   NOT EXCEED THE AMOUNT PAID BY THE LICENSEE FOR THE LICENSE KEY.
+
+
+8. TERMINATION
+
+   (a) This Agreement is effective until terminated.
+
+   (b) It terminates automatically if the Licensee breaches any term of
+       this Agreement, including but not limited to sharing the License
+       Key, distributing the Software, or attempting to circumvent the
+       license verification.
+
+   (c) Upon termination, the Licensee must immediately cease all use of
+       the Software and delete all copies in their possession.
+
+   (d) Sections 3, 5, 6, 7, and 9 shall survive termination of this
+       Agreement.
+
+
+9. GOVERNING LAW
+
+   This Agreement shall be governed by and construed in accordance with
+   the laws of Pakistan, without regard to its conflict of law provisions.
+   Any disputes arising under this Agreement shall be resolved in the
+   courts of competent jurisdiction in Karachi, Pakistan.
+
+
+10. ENTIRE AGREEMENT
+
+    This Agreement constitutes the entire agreement between the Licensor
+    and the Licensee concerning the Software and supersedes all prior or
+    contemporaneous communications, proposals, and representations, whether
+    oral or written.
+
+    No amendment or modification of this Agreement shall be binding unless
+    made in writing and signed by both parties.
+
+
+11. SEVERABILITY
+
+    If any provision of this Agreement is held to be invalid or
+    unenforceable, the remaining provisions shall continue in full force
+    and effect.
+
+
+12. CONTACT INFORMATION
+
+    For licensing inquiries, support, or to report issues:
+
+    Author   : Nisar Zaidi
+    Email    : nisarzaidi75@gmail.com
+    WhatsApp : +92-301-2122387
+    GitHub   : https://github.com/NisarZaidi/odoo-manager-releases/issues
