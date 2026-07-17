@@ -20,7 +20,7 @@ set -e
 GITHUB_OWNER="NisarZaidi"
 GITHUB_REPO="odoo-manager-releases"
 PRODUCT_NAME="Odoo Development Manager"
-PRODUCT_VERSION="2.0"
+PRODUCT_VERSION="2.1"
 SUPPORT_CONTACT="nisarzaidi75@gmail.com / +92-301-2122387"
 # ---------------------------------------------------------------------------
 

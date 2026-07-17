@@ -1,7 +1,7 @@
 # Odoo Development Manager
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2.0-blue?style=for-the-badge" alt="Version" />
+  <img src="https://img.shields.io/badge/version-2.1-blue?style=for-the-badge" alt="Version" />
   <img src="https://img.shields.io/badge/platform-Linux%20(Debian%2FUbuntu)-lightgrey?style=for-the-badge&logo=linux" alt="Platform" />
   <img src="https://img.shields.io/badge/shell-Bash-4EAA25?style=for-the-badge&logo=gnu-bash" alt="Bash" />
   <img src="https://img.shields.io/badge/Odoo-13%20%E2%80%93%2019-714B67?style=for-the-badge&logo=odoo" alt="Odoo Versions" />
@@ -91,11 +91,13 @@ shortcuts, workspace doctor, and much more on top.
 - [System Resource Check](#system-resource-check)
 - [Workspace and Project Notes](#workspace-and-project-notes)
 - [Plugin System](#plugin-system)
+- [Advanced Tools](#advanced-tools)
 - [Secrets Separation (.env)](#secrets-separation-env)
 - [Enterprise Auto-Detection](#enterprise-auto-detection)
 - [Non-Interactive CLI Mode](#non-interactive-cli-mode)
 - [Shell Tab-Completion](#shell-tab-completion)
 - [Updating](#updating)
+- [User Manual](#user-manual)
 - [Environment Variables](#environment-variables)
 - [Workspace Structure](#workspace-structure)
 - [Project Structure](#project-structure)
@@ -256,6 +258,21 @@ That's it — the interactive wizard takes over:
 | | Notes | Per-workspace and per-project persistent notes |
 | **Licensing** | Offline Verification | RSA-signed keys, no internet required |
 | | Lifetime Keys | One-time purchase, no subscription |
+| **Advanced Tools** | Hot Reload | Auto-restart Odoo when code files change |
+| | Advanced Module Scaffold | Full boilerplate with models, views, security, wizards, controllers |
+| | Module Dependency Graph | Visualize and check module dependencies |
+| | Module Quality Checker | Score modules 0–10 with issue detection |
+| | Batch Operations | Start/stop/backup all workspaces at once |
+| | Environment Templates | Save and restore workspace configurations |
+| | Time Tracker | Track hours per project with CSV export |
+| | Project Metadata | Store client name, description, deadline per project |
+| | Custom Aliases | User-defined command shortcuts |
+| | Team Sync | Share workspace config as JSON via git |
+| | Remote Server Management | Control remote Odoo instances via SSH |
+| | DB Migration Helper | Compatibility check for version upgrades |
+| | DB Snapshot & Compare | Schema snapshots and diff between databases |
+| | Multi-Database Testing | Test modules against multiple databases |
+| | Desktop Notifications | Alerts for start/stop/crash/backup events |
 
 ---
 
@@ -678,6 +695,147 @@ so they have access to all internal functions.
 
 ---
 
+## Advanced Tools
+
+### Hot Reload (Auto-Restart on File Changes)
+
+Start Odoo with file watching — any change to `.py`, `.xml`, or `.csv` files in your project automatically restarts the server. No more manual restarts after every code edit.
+
+- **Menu:** Press **!** in the Development Menu
+- **Requirement:** `inotify-tools` (auto-installs on first use)
+
+### Advanced Module Scaffold
+
+Create production-ready Odoo modules with best-practice boilerplate:
+- Full module structure: models, views, security, wizards, controllers
+- `__manifest__.py` with proper dependencies and data files
+- Security groups + access rules (`ir.model.access.csv`)
+- Tree, Form, and Search views with statusbar and chatter
+- Optional wizard and controller scaffolding
+
+**Menu:** Press **7** | **CLI:** `odoo-manager scaffold --workspace <name>`
+
+### Module Dependency Graph
+
+Visualize dependencies between all modules in your project:
+- Shows local (in-project) vs external dependencies as a tree
+- Detects circular dependencies automatically
+
+**Menu:** Press **8** | **CLI:** `odoo-manager deps --workspace <name>`
+
+### Module Quality Checker
+
+Scans all modules and gives a quality score (0–10):
+- Missing `__manifest__.py` fields (name, description, license, author)
+- `print()` statements that should use `logging` instead
+- Bare `except:` clauses (should catch specific exceptions)
+- Missing `# -*- coding: utf-8 -*-` headers
+- Missing security access files
+
+**Menu:** Press **9** | **CLI:** `odoo-manager quality --workspace <name>`
+
+### Batch Operations
+
+Perform actions across all workspaces simultaneously:
+- Start all workspaces
+- Stop all workspaces
+- Backup all databases
+- Upgrade a module across all workspaces
+
+**Menu:** Press **@** | **CLI:** `odoo-manager batch`
+
+### Environment Templates
+
+Save and restore workspace configurations as reusable templates:
+- Save current workspace setup (Odoo version, projects, ports)
+- Load templates to quickly create new workspaces with the same structure
+- Delete old templates
+
+**Menu:** Press **#** | **CLI:** `odoo-manager templates`
+
+### Per-Project Time Tracker
+
+Track time spent on each project for billing and productivity:
+- Start/stop tracking per project
+- View reports with session history
+- Export to CSV for invoicing
+
+**Menu:** Press **$** | **CLI:** `odoo-manager timetrack`
+
+### Client/Project Metadata
+
+Store project-level information:
+- Client name, project description, deadline
+- Automatic deadline warnings (overdue or approaching)
+- View all project metadata across workspaces
+
+**Menu:** Press **%**
+
+### Custom Command Aliases
+
+Define your own shortcut commands for frequently used operations:
+- Map complex commands to simple names
+- Example: `dev = start --workspace odoo18 --project agri`
+- Run with: `odoo-manager <your-alias-name>`
+
+**Menu:** Press **^** | **CLI:** `odoo-manager aliases`
+
+### Team Sync
+
+Share workspace configuration with team members:
+- Export workspace setup as JSON (commits to git)
+- Team members import to replicate project structure on their machines
+
+**Menu:** Press **&**
+
+### Remote Server Management
+
+Manage remote Odoo instances via SSH:
+- Start/stop/restart remote Odoo
+- View remote logs (tail -f)
+- Check remote server status
+- Add multiple remote servers
+
+**Menu:** Press *** | **CLI:** `odoo-manager remote`
+
+### DB Migration Helper
+
+Assists with Odoo version upgrades:
+- Module compatibility check for target Odoo version
+- Deprecation detection (`openerp` imports, `@api.multi`, `@api.one`)
+- Step-by-step migration checklist (preparation, code, data, go-live)
+
+**Menu:** Press **(** | **CLI:** `odoo-manager migration`
+
+### DB Snapshot & Compare
+
+Take database schema snapshots and compare between versions:
+- Snapshot schema before/after module upgrades
+- Detect new or removed tables
+- Show detailed schema diff
+
+**Menu:** Press **)** | **CLI:** `odoo-manager dbcompare`
+
+### Multi-Database Testing
+
+Test a module against multiple databases:
+- Add test databases (e.g., production copies)
+- Run module upgrade test against all databases
+- Pass/fail report per database
+
+**Menu:** Press **+** | **CLI:** `odoo-manager multitest`
+
+### Desktop Notifications
+
+Receive desktop notifications for important events:
+- Odoo started/stopped/crashed
+- Backup complete
+- Long tasks finished
+- Update available
+- Uses `notify-send` (auto-detected on Linux)
+
+---
+
 ## Secrets Separation (.env)
 
 Sensitive values like `admin_passwd`, `db_password`, and API keys can be
@@ -742,6 +900,22 @@ odoo-manager test   --workspace odoo18 --project agri    # run tests
 odoo-manager lint   --workspace odoo18 --project agri    # flake8/pylint
 ```
 
+### Advanced Tool Commands
+
+```bash
+odoo-manager scaffold  --workspace odoo18 --project agri  # advanced module scaffold
+odoo-manager quality   --workspace odoo18 --project agri  # module quality checker
+odoo-manager deps      --workspace odoo18 --project agri  # dependency graph
+odoo-manager batch                                         # batch operations
+odoo-manager templates                                     # environment templates
+odoo-manager timetrack                                     # time tracker
+odoo-manager aliases                                       # custom aliases
+odoo-manager remote                                        # remote server mgmt
+odoo-manager migration --workspace odoo18                  # migration helper
+odoo-manager dbcompare --workspace odoo18                  # DB snapshot & compare
+odoo-manager multitest --workspace odoo18                  # multi-DB testing
+```
+
 ---
 
 ## Shell Tab-Completion
@@ -767,6 +941,26 @@ Or launch `odoo-manager` normally — it checks for a newer version on
 every startup and will prompt you if one is available.
 
 Disable the update check with `ODOO_MANAGER_SKIP_UPDATE_CHECK=1`.
+
+---
+
+## User Manual
+
+> For the complete step-by-step user guide, see **[USER-MANUAL.md](USER-MANUAL.md)**.
+
+The user manual covers:
+
+- Getting started from scratch
+- Complete menu reference (every key and what it does)
+- CLI command reference
+- Workspace and project management
+- Module development workflow
+- Database operations
+- Backup and restore
+- Advanced tools guide
+- Team collaboration
+- Remote server management
+- Troubleshooting and FAQ
 
 ---
 
