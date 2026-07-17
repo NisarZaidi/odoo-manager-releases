@@ -701,7 +701,7 @@ so they have access to all internal functions.
 
 Start Odoo with file watching — any change to `.py`, `.xml`, or `.csv` files in your project automatically restarts the server. No more manual restarts after every code edit.
 
-- **Menu:** Press **!** in the Development Menu
+- **Menu:** Press **S** then **2** in the Development Menu
 - **Requirement:** `inotify-tools` (auto-installs on first use)
 
 ### Advanced Module Scaffold
@@ -742,7 +742,7 @@ Perform actions across all workspaces simultaneously:
 - Backup all databases
 - Upgrade a module across all workspaces
 
-**Menu:** Press **@** | **CLI:** `odoo-manager batch`
+**Menu:** Press **B** (Workspace screen) | **CLI:** `odoo-manager batch`
 
 ### Environment Templates
 
@@ -751,7 +751,7 @@ Save and restore workspace configurations as reusable templates:
 - Load templates to quickly create new workspaces with the same structure
 - Delete old templates
 
-**Menu:** Press **#** | **CLI:** `odoo-manager templates`
+**Menu:** Press **E** (Workspace screen) | **CLI:** `odoo-manager templates`
 
 ### Per-Project Time Tracker
 
@@ -760,7 +760,7 @@ Track time spent on each project for billing and productivity:
 - View reports with session history
 - Export to CSV for invoicing
 
-**Menu:** Press **$** | **CLI:** `odoo-manager timetrack`
+**Menu:** Press **T** (Project screen) | **CLI:** `odoo-manager timetrack`
 
 ### Client/Project Metadata
 
@@ -769,7 +769,7 @@ Store project-level information:
 - Automatic deadline warnings (overdue or approaching)
 - View all project metadata across workspaces
 
-**Menu:** Press **%**
+**Menu:** Press **D** (Project screen)
 
 ### Custom Command Aliases
 
@@ -778,7 +778,7 @@ Define your own shortcut commands for frequently used operations:
 - Example: `dev = start --workspace odoo18 --project agri`
 - Run with: `odoo-manager <your-alias-name>`
 
-**Menu:** Press **^** | **CLI:** `odoo-manager aliases`
+**Menu:** Press **A** (Workspace screen) | **CLI:** `odoo-manager aliases`
 
 ### Team Sync
 
@@ -786,7 +786,7 @@ Share workspace configuration with team members:
 - Export workspace setup as JSON (commits to git)
 - Team members import to replicate project structure on their machines
 
-**Menu:** Press **&**
+**Menu:** Press **S** (Project screen)
 
 ### Remote Server Management
 
@@ -796,7 +796,7 @@ Manage remote Odoo instances via SSH:
 - Check remote server status
 - Add multiple remote servers
 
-**Menu:** Press *** | **CLI:** `odoo-manager remote`
+**Menu:** Press **M** (Workspace screen) | **CLI:** `odoo-manager remote`
 
 ### DB Migration Helper
 
@@ -805,7 +805,7 @@ Assists with Odoo version upgrades:
 - Deprecation detection (`openerp` imports, `@api.multi`, `@api.one`)
 - Step-by-step migration checklist (preparation, code, data, go-live)
 
-**Menu:** Press **(** | **CLI:** `odoo-manager migration`
+**Menu:** Press **M** | **CLI:** `odoo-manager migration`
 
 ### DB Snapshot & Compare
 
@@ -814,7 +814,7 @@ Take database schema snapshots and compare between versions:
 - Detect new or removed tables
 - Show detailed schema diff
 
-**Menu:** Press **)** | **CLI:** `odoo-manager dbcompare`
+**Menu:** Press **W** | **CLI:** `odoo-manager dbcompare`
 
 ### Multi-Database Testing
 
@@ -823,7 +823,7 @@ Test a module against multiple databases:
 - Run module upgrade test against all databases
 - Pass/fail report per database
 
-**Menu:** Press **+** | **CLI:** `odoo-manager multitest`
+**Menu:** Press **P** | **CLI:** `odoo-manager multitest`
 
 ### Desktop Notifications
 

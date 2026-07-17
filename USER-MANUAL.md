@@ -127,24 +127,35 @@ The Development Menu is your main dashboard. Each key triggers a specific action
 | **C** | Configuration | View/edit `odoo.conf`, addons path, enterprise detection |
 | **T** | Quality Checks | Run tests (pytest) and lint (flake8) on projects |
 
-### Advanced Tools
+### Advanced Tools (Development Menu)
 
 | Key | Action | Description |
 |---|---|---|
 | **7** | Advanced Module Scaffold | Create modules with full boilerplate (models, views, security, wizards, controllers) |
 | **8** | Module Dependency Graph | Visualize dependencies, detect circular deps |
 | **9** | Module Quality Checker | Score modules 0-10, detect common issues |
-| **!** | Hot Reload | Start Odoo with auto-restart on file changes |
-| **@** | Batch Operations | Start/stop/backup all workspaces at once |
-| **#** | Environment Templates | Save/restore workspace configurations |
-| **$** | Time Tracker | Track hours per project, CSV export |
-| **%** | Project Metadata | Store client name, description, deadline |
-| **^** | Custom Aliases | Define your own shortcut commands |
-| **&** | Team Sync | Export/import workspace config for team sharing |
-| **\*** | Remote Server Mgmt | Manage remote Odoo instances via SSH |
-| **(** | DB Migration Helper | Compatibility check for version upgrades |
-| **)** | DB Snapshot & Compare | Schema snapshots and diff between databases |
-| **+** | Multi-Database Testing | Test modules against multiple databases |
+| **M** | DB Migration Helper | Compatibility check for version upgrades |
+| **W** | DB Snapshot & Compare | Schema snapshots and diff between databases |
+| **P** | Multi-Database Testing | Test modules against multiple databases |
+
+> **Hot Reload:** Press **S** then **2** to start Odoo with auto-restart on file changes.
+
+### Global Tools (Workspace Selection Screen)
+
+| Key | Action | Description |
+|---|---|---|
+| **B** | Batch Operations | Start/stop/backup all workspaces at once |
+| **E** | Environment Templates | Save/restore workspace configurations |
+| **M** | Remote Server Mgmt | Manage remote Odoo instances via SSH |
+| **A** | Custom Aliases | Define your own shortcut commands |
+
+### Project Tools (Project Selection Screen)
+
+| Key | Action | Description |
+|---|---|---|
+| **T** | Time Tracker | Track hours per project, CSV export |
+| **D** | Project Metadata | Store client name, description, deadline |
+| **S** | Team Sync | Export/import workspace config for team sharing |
 
 ### Overview and Environment
 
@@ -369,7 +380,7 @@ Full database management with:
 - **Drop** database (with safety backup)
 - **Clone & Run** — duplicate DB + restore + start Odoo in one step
 
-### DB Snapshot & Compare (Key **)**)
+### DB Snapshot & Compare (Key **W**)
 
 1. **Take Snapshot** — captures the current database schema
 2. **Compare Snapshots** — select two snapshots to see:
@@ -378,7 +389,7 @@ Full database management with:
 
 Useful before/after module upgrades to verify database changes.
 
-### Multi-Database Testing (Key **+**)
+### Multi-Database Testing (Key **P**)
 
 1. **Add test databases** — register databases for testing
 2. **Run module test** — upgrades a module against all test databases
@@ -395,7 +406,7 @@ Useful before/after module upgrades to verify database changes.
 - **Snapshots** — point-in-time backup with doctor report
 - **Auto Backup** — set up cron-based scheduled backups with retention cleanup
 
-### Batch Backup (Key **@**)
+### Batch Backup (Key **B** - Workspace screen)
 
 Backup all databases across all workspaces in one operation.
 
@@ -403,9 +414,9 @@ Backup all databases across all workspaces in one operation.
 
 ## Advanced Tools Guide
 
-### Hot Reload (Key **!**)
+### Hot Reload (Key **S → 2**)
 
-1. Press **!** from the Development Menu
+1. Press **S** → **2** from the Development Menu
 2. Odoo starts with file watching enabled
 3. Edit any `.py`, `.xml`, or `.csv` file in your project
 4. Odoo automatically restarts when changes are detected
@@ -433,28 +444,28 @@ Shows a tree of module dependencies:
 - **White** = external dependency (Odoo core or third-party)
 - Automatically detects circular dependencies
 
-### Batch Operations (Key **@**)
+### Batch Operations (Key **B** - Workspace screen)
 
 - **Start All** — start every workspace that isn't running
 - **Stop All** — stop all running Odoo instances
 - **Backup All** — dump all databases across all workspaces
 - **Upgrade Module** — upgrade a module across all workspaces
 
-### Environment Templates (Key **#**)
+### Environment Templates (Key **E** - Workspace screen)
 
 Save your workspace setup as a reusable template:
 1. **Save** — captures Odoo version, port, projects list, enterprise status
 2. **Load** — creates a new workspace using template settings
 3. **Delete** — remove old templates
 
-### Time Tracker (Key **$**)
+### Time Tracker (Key **T** - Project screen)
 
 1. **Start Tracking** — begins timing the current project
 2. **Stop Tracking** — records the session duration
 3. **View Report** — shows total time and recent sessions
 4. **Export CSV** — exports all tracking data for invoicing
 
-### Project Metadata (Key **%**)
+### Project Metadata (Key **D** - Project screen)
 
 Store per-project information:
 - Client name
@@ -466,21 +477,21 @@ Deadlines are shown with warnings:
 - **Yellow** = within 7 days
 - **White** = more than 7 days away
 
-### Custom Aliases (Key **^**)
+### Custom Aliases (Key **A** - Workspace screen)
 
 Define shortcut commands:
 1. **Add Alias** — give a name and the command it should run
 2. Example: name `dev`, command `start --workspace odoo18 --project agri`
 3. Run: `odoo-manager dev` — executes the mapped command
 
-### Team Sync (Key **&**)
+### Team Sync (Key **S** - Project screen)
 
 1. **Export** — creates `.odoo-team.json` in the workspace root
 2. Commit this file to git
 3. Team members pull the file
 4. **Import** — creates missing project directories from the config
 
-### DB Migration Helper (Key **(**)
+### DB Migration Helper (Key **M**)
 
 1. **Compatibility Check** — scans modules for deprecated API usage:
    - `from openerp` imports (deprecated since v9)
@@ -498,15 +509,15 @@ Define shortcut commands:
 
 ### Sharing Workspace Config
 
-1. Press **&** → Export Team Config
+1. Press **S** (Project screen) → Export Team Config
 2. `.odoo-team.json` is created in your workspace root
 3. Commit to git: `git add .odoo-team.json && git commit -m "Share workspace config"`
-4. Team members pull and press **&** → Import Team Config
+4. Team members pull and press **S** (Project screen) → Import Team Config
 5. Missing project directories are created automatically
 
 ### Sharing Templates
 
-1. Press **#** → Save Current Workspace as Template
+1. Press **E** (Workspace screen) → Save Current Workspace as Template
 2. Templates are stored in `~/.local/share/odoo-manager/templates/`
 3. Share the `.json` file manually with teammates
 4. They place it in the same directory and use Load Template
@@ -593,22 +604,22 @@ A: By default in `~/Documents/`. Override with `ODOO_MANAGER_WORKSPACE_ROOT=/cus
 A: Yes. Drop Enterprise modules into the `enterprise/` folder in your workspace. The tool auto-detects them and adds them to the addons path.
 
 **Q: How do I backup everything?**
-A: Press **@** → Backup All Databases. Or press **A** in any workspace for individual backup/restore.
+A: Press **B** (Workspace screen) → Backup All Databases. Or press **A** in any workspace for individual backup/restore.
 
 **Q: How do I share my setup with a new team member?**
-A: Press **&** to export team config, commit to git. They install the tool, enter their license key, pull the repo, and press **&** to import.
+A: Press **S** (Project screen) to export team config, commit to git. They install the tool, enter their license key, pull the repo, and press **S** (Project screen) to import.
 
 **Q: Can I use this in CI/CD pipelines?**
 A: Yes. All commands work in non-interactive CLI mode with `--json` output for machine-readable results.
 
 **Q: How do I track time for billing?**
-A: Press **$** → Start Tracking. Stop when done. Export to CSV for invoicing.
+A: Press **T** (Project screen) → Start Tracking. Stop when done. Export to CSV for invoicing.
 
 **Q: Can I test a module against production data?**
-A: Press **+** → Add your production copy as a test database. Run module tests against all registered databases.
+A: Press **P** → Add your production copy as a test database. Run module tests against all registered databases.
 
 **Q: What if I need to upgrade Odoo from v16 to v17?**
-A: Press **(** → Compatibility Check to see which modules need updates. Then follow the Migration Checklist for a step-by-step guide.
+A: Press **M** → Compatibility Check to see which modules need updates. Then follow the Migration Checklist for a step-by-step guide.
 
 **Q: How do I get support?**
 A: Contact the developer:

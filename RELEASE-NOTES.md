@@ -13,6 +13,14 @@ instead of environment management.
 
 ## ✨ What's New in v2.1.0
 
+### 🎯 Smarter Menu Organization
+- Tools distributed across 3 screens based on context:
+  - **Global Tools** (Workspace screen): Batch Ops, Templates, Remote, Aliases
+  - **Project Tools** (Project screen): Time Tracker, Metadata, Team Sync
+  - **Advanced Tools** (Dev Menu): Scaffold, Deps, Quality, Migration, DB Compare, Multi-DB Test
+- All special character keys (`@`, `#`, `$`, etc.) replaced with simple letters
+- Hot Reload now accessible via **S → 2** (Start Odoo submenu)
+
 ### 🔥 15 New Advanced Developer Tools
 
 - **Hot Reload** — auto-restart Odoo when code files change (uses `inotify-tools`)
