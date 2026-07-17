@@ -22,6 +22,7 @@ GITHUB_REPO="odoo-manager-releases"
 PRODUCT_NAME="Odoo Development Manager"
 PRODUCT_VERSION="2.1"
 SUPPORT_CONTACT="nisarzaidi75@gmail.com / +92-301-2122387"
+FREE_LIMIT=100
 # ---------------------------------------------------------------------------
 
 INSTALL_HOME="$HOME/.local/share/odoo-manager"
@@ -180,7 +181,7 @@ clear 2>/dev/null || true
 box_header "${PRODUCT_NAME}" "Version ${PRODUCT_VERSION}  •  Installer"
 
 echo -e "  ${DIM}This installer will:${NC}"
-echo -e "    ${BULLET} Verify your license key"
+echo -e "    ${BULLET} Activate your license (free tier available for first ${FREE_LIMIT} developers)"
 echo -e "    ${BULLET} Check and install required system packages"
 echo -e "    ${BULLET} Download and install ${PRODUCT_NAME}"
 echo -e "    ${BULLET} Configure your shell (PATH + tab-completion)"
@@ -194,7 +195,7 @@ hr
 section 1 "$TOTAL_STEPS" "Checking Installer Requirements"
 
 MISSING_TOOLS=()
-for CMD in curl tar openssl; do
+for CMD in curl tar openssl jq; do
     if command_exists "$CMD"; then
         ok "$CMD"
     else
@@ -276,71 +277,118 @@ activate_license()
 
     section 3 "$TOTAL_STEPS" "License Activation"
 
+    # Check for existing license
     if [ -f "$LICENSE_FILE" ]; then
 
         local SAVED_KEY
         SAVED_KEY=$(cat "$LICENSE_FILE" 2>/dev/null)
-        local SAVED_ID
+        local SAVED_TIER
 
-        if SAVED_ID=$(validate_license_key "$SAVED_KEY"); then
-            ok "Existing license found and verified"
-            kv "Licensed to" "$SAVED_ID"
+        if SAVED_TIER=$(validate_license_key "$SAVED_KEY"); then
+            local TIER_DISPLAY="${SAVED_TIER%%:*}"
+            ok "Existing license verified"
+            kv "License Key" "$SAVED_KEY"
+            kv "Tier" "$TIER_DISPLAY"
             echo
             return 0
         fi
 
     fi
 
-    echo -e "  ${WHITE}${PRODUCT_NAME} is licensed software.${NC}"
-    echo -e "  ${DIM}A lifetime license key was sent to you directly by the seller${NC}"
-    echo -e "  ${DIM}(email or WhatsApp) after purchase. Paste it below to continue.${NC}"
-    echo
-    echo -e "  ${DIM}Don't have a key yet? Contact: ${SUPPORT_CONTACT}${NC}"
-    echo
-    hr
-    echo
-
-    local ATTEMPTS=0
-    local MAX_ATTEMPTS=3
-
-    while :
-    do
-
-        read -r -p "  License Key: " ENTERED_KEY
-        echo
-
-        local CUSTOMER_ID
-
-        if CUSTOMER_ID=$(validate_license_key "$ENTERED_KEY"); then
-
-            echo "$ENTERED_KEY" > "$LICENSE_FILE"
-            chmod 600 "$LICENSE_FILE" 2>/dev/null
-
-            ok "License verified successfully"
-            kv "Licensed to" "$CUSTOMER_ID"
-            kv "License type" "Lifetime"
-            echo
-            return 0
-
+    # Check for jq (needed for Supabase API)
+    if ! command_exists jq; then
+        warn "jq is required for license verification. Attempting to install..."
+        if command_exists apt-get; then
+            sudo apt-get install -y jq >/dev/null 2>&1 || true
         fi
-
-        ATTEMPTS=$((ATTEMPTS+1))
-
-        fail "Invalid license key ($ATTEMPTS/$MAX_ATTEMPTS attempts)"
-
-        if [ "$ATTEMPTS" -ge "$MAX_ATTEMPTS" ]; then
-            echo
-            die "Too many invalid attempts.
-
-  Please double-check you copied the FULL key with no extra spaces or
-  line breaks, or contact the seller for support:
-  ${SUPPORT_CONTACT}"
+        if ! command_exists jq; then
+            die "jq is required but could not be installed.
+  Install it manually: sudo apt-get install jq
+  Then re-run this installer."
         fi
+        ok "jq installed"
+    fi
 
-        echo -e "  ${DIM}Please try again.${NC}"
-        echo
+    echo
+    echo -e "  ${WHITE}${PRODUCT_NAME} — License Options${NC}"
+    echo
+    echo -e "  ${WHITE}1${NC}) Free Tier (first ${FREE_LIMIT} developers — lifetime access)"
+    echo -e "  ${WHITE}2${NC}) Enter Paid License Key"
+    echo
 
-    done
+    local CHOICE
+    read -r -p "  Select (1/2): " CHOICE
+    echo
+
+    case "$CHOICE" in
+
+        1)
+            # Free tier self-service registration
+            if register_free_tier; then
+                return 0
+            else
+                die "Free registration failed.
+  Please contact ${SUPPORT_CONTACT} for assistance."
+            fi
+            ;;
+
+        2)
+            # Manual key entry
+            echo -e "  ${DIM}Paste the license key you received from the seller.${NC}"
+            echo
+
+            local ATTEMPTS=0
+            local MAX_ATTEMPTS=3
+
+            while :
+            do
+                read -r -p "  License Key: " ENTERED_KEY
+                echo
+
+                # Validate key format (ODM-PRO-XXXX-XXXX or ODM-ENT-XXXX-XXXX)
+                if ! echo "$ENTERED_KEY" | grep -qE '^ODM-'; then
+                    fail "Invalid key format. Key should start with ODM-"
+                    ATTEMPTS=$((ATTEMPTS+1))
+                    if [ "$ATTEMPTS" -ge "$MAX_ATTEMPTS" ]; then
+                        die "Too many invalid attempts. Contact: ${SUPPORT_CONTACT}"
+                    fi
+                    echo -e "  ${DIM}Please try again.${NC}"
+                    echo
+                    continue
+                fi
+
+                local TIER_RESULT
+                if TIER_RESULT=$(validate_license_key "$ENTERED_KEY"); then
+                    local TIER_DISPLAY="${TIER_RESULT%%:*}"
+
+                    echo "$ENTERED_KEY" > "$LICENSE_FILE"
+                    chmod 600 "$LICENSE_FILE" 2>/dev/null
+
+                    ok "License verified successfully"
+                    kv "License Key" "$ENTERED_KEY"
+                    kv "Tier" "$TIER_DISPLAY"
+                    echo
+                    return 0
+                fi
+
+                ATTEMPTS=$((ATTEMPTS+1))
+                fail "Invalid or inactive license key ($ATTEMPTS/$MAX_ATTEMPTS attempts)"
+
+                if [ "$ATTEMPTS" -ge "$MAX_ATTEMPTS" ]; then
+                    die "Too many invalid attempts.
+  Please contact the seller for support: ${SUPPORT_CONTACT}"
+                fi
+
+                echo -e "  ${DIM}Please try again.${NC}"
+                echo
+            done
+            ;;
+
+        *)
+            die "Invalid selection. Please re-run the installer and choose 1 or 2."
+            ;;
+
+    esac
 
 }
 

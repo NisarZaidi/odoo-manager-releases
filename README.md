@@ -146,34 +146,53 @@ That's it. Everything else — **Git, Python 3, pip, PostgreSQL, build tools**
 
 ---
 
-## License Activation
+## Licensing & Free Tier
 
-Odoo Development Manager is licensed software. When you purchase it, you
-receive a single **license key** (a long string) directly from the seller
-by email or WhatsApp — no account, no file, nothing else needed.
+Odoo Development Manager offers a **free tier** for the first 100 developers, plus a
+**paid pro tier** with access to all advanced tools.
 
-### How it works:
+### Free Tier (First 100 Developers)
 
-- The first time you run the installer (or `odoo-manager` itself), you will
-  be prompted to paste your license key.
-- The key is verified **entirely offline** using RSA signature verification —
-  no internet connection or license server required.
-- Once accepted, the key is cached at `~/.odoo-manager-license` so you are
-  never asked again on that machine.
-- Lost your key or need a new one? Contact the seller (see [Support](#support))
-  — they can look it up or reissue it for you.
+During installation, choose **Option 1 — Free Tier** and register with your name
+and email. You get a lifetime license key (`ODM-FREE-XXXX-XXXX`) with access to:
 
-### How to get a license key:
+- Workspace management (create, start, stop Odoo environments)
+- Database manager (create, drop, backup, restore, clone)
+- Git integration (status, commit, push, pull, stash)
+- Module management (create, upgrade, manifest inspector)
+- Config profiles, workspace notes, time tracker
+- Environment export/import
 
-Contact the developer directly:
+### Pro Tier (Paid)
 
-| Channel | Contact |
+Upgrade to unlock all advanced tools:
+
+- Advanced Module Scaffold (full boilerplate wizard)
+- Module Dependency Graph
+- Module Quality Checker (score 0-10)
+- Batch Operations (start/stop/backup all workspaces)
+- Hot Reload (auto-restart on file changes)
+- DB Migration Helper
+- DB Snapshot & Compare
+- Multi-Database Testing
+- Remote Server Management
+
+### How It Works
+
+1. Run the installer → choose Free or Paid
+2. **Free**: Enter name + email → get instant license key
+3. **Paid**: Paste the `ODM-PRO-XXXX-XXXX` key you received
+4. Key verified online via Supabase (with offline grace period)
+5. Tier cached locally — no repeated prompts
+
+### How to Get a License
+
+| Option | How |
 |---|---|
-| Email | **nisarzaidi75@gmail.com** |
-| WhatsApp / Phone | **+92-301-2122387** |
-
-Include your name and preferred email/contact, and you will receive your
-license key within minutes.
+| **Free Tier** | Self-service during install (name + email required) |
+| **Pro Tier** | Contact the developer: **nisarzaidi75@gmail.com** / **+92-301-2122387** |
+| **CLI Register** | Already installed? Run: `odoo-manager register` |
+| **Check Tier** | Run: `odoo-manager license-status` |
 
 ---
 
@@ -1033,9 +1052,10 @@ key are never touched.**
 
 ### "Invalid license key" during install
 
-Double-check you copied the *entire* key with no extra spaces or line
-breaks. If it still fails after 3 attempts, contact the seller with
-the name/email used at purchase.
+For **free tier**: Make sure you entered a valid email. Check internet connection.
+For **paid tier**: Double-check you copied the *entire* `ODM-PRO-XXXX-XXXX` key with
+no extra spaces or line breaks. If it still fails after 3 attempts, contact the
+seller with the name/email used at purchase.
 
 ### A required package failed to install automatically
 
@@ -1071,15 +1091,16 @@ for the exact error.
 
 ## License
 
-This software is **proprietary and commercially licensed** — see the
-[`LICENSE`](LICENSE) file for full terms.
+This software is **proprietary and commercially licensed** with a free tier
+option — see the [`LICENSE`](LICENSE) file for full terms.
 
 **Key points:**
 
-- You need a valid, purchased license key to use this software
+- **Free tier** available for first 100 developers (basic features, lifetime)
+- **Pro tier** requires a purchased license key (all features)
 - The license is **non-exclusive, non-transferable** (one key per person)
 - You may **not** redistribute, modify, reverse engineer, or share the software
-- The license key system works **fully offline** — no data is sent to any server
+- License verification uses Supabase (online check with offline grace period)
 - Keys are **lifetime** — no subscription, no expiry
 - The software is provided **"as is"** without warranty
 

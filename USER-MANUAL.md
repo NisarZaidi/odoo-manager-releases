@@ -48,23 +48,40 @@ The installer will:
 3. Extract to `~/.local/share/odoo-manager/`
 4. Create the `odoo-manager` command globally
 5. Install Bash and Zsh tab-completion
-6. Ask for your license key
+6. Ask you to choose a license option
 
-### License Activation
+### Licensing — Free Tier Available!
 
-After installation, you need a license key to use the tool. Contact the developer:
+Odoo Development Manager offers **two tiers:**
 
-- **Email:** nisarzaidi75@gmail.com
-- **Phone/WhatsApp:** +92-301-2122387
+#### Free Tier (First 100 Developers)
 
-Once you have your key, enter it when prompted during installation, or activate later:
+During installation, select **Option 1** and register with your name + email.
+You'll receive an instant `ODM-FREE-XXXX-XXXX` license key with lifetime access to:
+
+- Workspace management (create, start, stop Odoo environments)
+- Database manager (create, drop, backup, restore, clone)
+- Git integration (status, commit, push, pull, stash)
+- Module management (create, upgrade, manifest inspector)
+- Config profiles, notes, time tracker, aliases
+- Environment export/import
+
+#### Pro Tier (Paid — All Features)
+
+Upgrade to unlock advanced tools:
+
+- Advanced Module Scaffold, Dependency Graph, Quality Checker
+- Batch Operations, Hot Reload, DB Migration, DB Compare
+- Multi-Database Testing, Remote Server Management
+
+**To get a Pro key:** Contact **nisarzaidi75@gmail.com** / **+92-301-2122387**
+
+#### Already Installed?
 
 ```bash
-odoo-manager
-# Enter your license key when prompted
+odoo-manager register          # Register for free tier later
+odoo-manager license-status    # Check your current tier
 ```
-
-The key is stored locally and verified offline — no internet required.
 
 ---
 
