@@ -13,6 +13,10 @@
 </p>
 
 <p align="center">
+  <img src="docs/images/banner.png" alt="Odoo Development Manager" width="800" />
+</p>
+
+<p align="center">
 A professional command-line tool that creates, runs, and manages multiple Odoo<br/>
 development environments — from fresh install to running server, all automated.
 </p>
@@ -299,6 +303,10 @@ That's it — the interactive wizard takes over:
 
 From the Development Menu, press **1** for a unified overview showing:
 
+<p align="center">
+  <img src="docs/images/workspace-overview.png" alt="Workspace Overview" width="700" />
+</p>
+
 - All workspaces with running/stopped status and port badges
 - Per-workspace project and module counts
 - Health indicators and favorite markers
@@ -371,6 +379,10 @@ for speed.
 
 From the Projects screen, press **N** for a guided flow to create a new project:
 
+<p align="center">
+  <img src="docs/images/project-menu.png" alt="Project Menu" width="700" />
+</p>
+
 1. Validates and creates the project folder under `projects/`
 2. Optionally initializes it as its own git repository
 3. Optionally scaffolds a first module (`odoo-bin scaffold`)
@@ -413,6 +425,10 @@ manager.
 Individual workspaces can be stopped from the menu. When you quit the
 manager, **all** running instances across **all** workspaces are stopped
 in parallel background jobs.
+
+<p align="center">
+  <img src="docs/images/clean-shutdown.png" alt="Clean Shutdown" width="700" />
+</p>
 
 ### Restarting
 
@@ -715,6 +731,10 @@ so they have access to all internal functions.
 ---
 
 ## Advanced Tools
+
+<p align="center">
+  <img src="docs/images/development-menu.png" alt="Development Menu" width="700" />
+</p>
 
 ### Hot Reload (Auto-Restart on File Changes)
 
